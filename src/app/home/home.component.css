@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+  }
+  
+  th {
+    height: 70px;
+  }
+  td {
+    text-align: center;
+  }
+  tr:hover {background-color: coral;}
+  
+  thead th {
+    width: 25%;
+  }
+table {
+    border-collapse: collapse;
+  }
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+

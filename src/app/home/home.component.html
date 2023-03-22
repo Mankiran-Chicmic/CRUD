@@ -1,0 +1,20 @@
+<div class="container">
+    <table>
+        <tr>
+          <th>S No.</th>
+          <th>Product</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Delete</th>
+          <th>Edit</th>
+        </tr>
+        <tr *ngFor="let prod of products;let j=index">
+            <td>{{prod.id}}</td>
+            <td>{{prod.name}}</td>
+            <td>{{prod.product}}</td>
+            <td>{{prod.price}}</td>
+            <td><button (click)="delete(prod.id)">Delete</button></td>
+            <td><button>Edit</button></td>
+        </tr>
+    </table>
+</div>
