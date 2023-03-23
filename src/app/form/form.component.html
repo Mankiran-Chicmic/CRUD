@@ -1,25 +1,31 @@
 <h3 style="text-align: center;">Products Form</h3>
-<div class="formContainer">
-  <div class="form-group">
-   <form [formGroup]="productForm" (ngSubmit)="postProducts(productForm.value)">
-      <label for="id"><b>S No.</b></label>
-      <input type="text" placeholder="Enter id" name="id" formControlName="id">
-      <span style="color:brown"*ngIf="id && id.invalid && id.errors?.['required'] && showErrors">This field is not valid</span>
-   <br>
-      <label for="price"><b>Price</b></label>
-      <input type="number" placeholder="Enter price" name="price" oninput="this.value = this.value.replace(/[^0-9]/g, '')" formControlName="price">
-      <span style="color:brown"*ngIf="price && price.invalid && price.errors?.['required'] && showErrors">This field is not valid</span>
-   <br>
-      <label for="name"><b>Name</b></label>
-      <input type="text" placeholder="Enter name" name="name" formControlName="name">
-      <span style="color:brown"*ngIf="name && name.invalid && name.errors?.['required'] && showErrors">This field is not valid</span>
-   <br>
-      <label for="product"><b>Products</b></label>
-      <input type="text" placeholder="Enter product" name="product" formControlName="product">
-      <span style="color:brown"*ngIf="product && product.invalid && product.errors?.['required'] && showErrors">This field is not valid</span>
-      <br>
-      <button type="submit" class="button">Submit</button>
-      <button class="home" (click)="goToHome()">Home</button>
-   </form>
+<div class="row">
+  <div class="col">
+   <div class="formContainer">
+      <div class="form-group">
+       <form [formGroup]="productForm" (ngSubmit)="postProducts(productForm.value)">
+          <label for="id"><b>S No.</b></label>
+          <input type="text" placeholder="Enter id" name="id" formControlName="id">
+          <span style="color:brown"*ngIf="id && id.invalid && id.errors?.['required'] && showErrors">This field is not valid</span>
+       <br>
+          <label for="price"><b>Price</b></label>
+          <input type="number" placeholder="Enter price" name="price" oninput="this.value = this.value.replace(/[^0-9]/g, '')" formControlName="price">
+          <span style="color:brown"*ngIf="price && price.invalid && price.errors?.['required'] && showErrors">This field is not valid</span>
+       <br>
+          <label for="name"><b>Name</b></label>
+          <input type="text" placeholder="Enter name" name="name" formControlName="name">
+          <span style="color:brown"*ngIf="name && name.invalid && name.errors?.['required'] && showErrors">This field is not valid</span>
+       <br>
+          <label for="product"><b>Products</b></label>
+          <input type="text" placeholder="Enter product" name="product" formControlName="product">
+          <span style="color:brown"*ngIf="product && product.invalid && product.errors?.['required'] && showErrors">This field is not valid</span>
+          <br>
+          <button type="submit" class="button">Submit</button>
+       </form>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+   <!-- <app-home (statusChange)="edit($event)"></app-home> -->
   </div>
 </div>

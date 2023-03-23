@@ -1,4 +1,4 @@
-<div class="container">
+<div class="col" class="container">
     <table>
         <tr>
           <th>S No.</th>
@@ -14,7 +14,7 @@
             <td>{{prod.product}}</td>
             <td>{{prod.price}}</td>
             <td><button (click)="delete(prod.id)">Delete</button></td>
-            <td><button>Edit</button></td>
+            <td><button (click)="editAndUpdate(prod.id,prod)">Edit</button></td>
         </tr>
     </table>
 </div>
