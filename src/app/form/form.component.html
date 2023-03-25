@@ -20,12 +20,12 @@
           <input type="text" placeholder="Enter product" name="product" formControlName="product">
           <span style="color:brown"*ngIf="product && product.invalid && product.errors?.['required'] && showErrors">This field is not valid</span>
           <br>
-          <button type="submit" class="button">Submit</button>
+          <input type="submit" class="button" value="{{editMode ? 'Update Product' : 'Add Product'}}">
        </form>
       </div>
     </div>
   </div>
   <div class="col">
-   <!-- <app-home (statusChange)="edit($event)"></app-home> -->
+   <app-home></app-home>
   </div>
 </div>

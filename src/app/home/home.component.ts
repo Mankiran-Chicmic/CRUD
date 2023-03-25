@@ -8,7 +8,7 @@ import { UserDataService } from '../user-data.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(private http:HttpClient,private router:Router,private userData:UserDataService){
+  constructor(private http:HttpClient,private router:Router,private userDataService:UserDataService){
     this.getDataProducts();
   }
   products:any=[]
@@ -27,13 +27,10 @@ export class HomeComponent {
      });
   }
   
-  editAndUpdate(id:number,prod:any){ 
-     this.http.put(`http://localhost:3000/products/${id}`,prod).subscribe((res:any)=>{
-        return this.userData.raiseDataEmitterEvent(res);
-     })
+  editAndUpdate(id:number,editMode:boolean){   
+    let currentList=this.products.find((p:any)=>{return p.id===id})
+    editMode=true
+    this.userDataService.raiseDataEmitterEvent(currentList,editMode,id);
   }
-  goToForm(){
-    this.router.navigate(['form'])
-  }
-  
+
 }
