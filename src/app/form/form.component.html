@@ -26,6 +26,6 @@
     </div>
   </div>
   <div class="col">
-   <app-home></app-home>
+   <app-home [products]="products" (changed)="getRequest()"></app-home>
   </div>
 </div>

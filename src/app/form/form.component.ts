@@ -1,18 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
 import { UserDataService } from '../user-data.service';
+import { productsArray } from 'src/productsArray';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
  
   editMode:boolean=false
   currentProductId:number=0
+  products:any=[];
   constructor(private http:HttpClient,private router:Router,private userDataService:UserDataService){
+    
     this.userDataService.dataEmitter.subscribe((res)=>{
       console.log(res)
          this.productForm.setValue({
@@ -23,6 +27,11 @@ export class FormComponent {
          })
          this.editMode=res.editMode
          this.currentProductId=res.currentProductId
+    })
+  }
+  ngOnInit(): void {
+    this.getDataProducts().subscribe((res)=> {
+      this.products=res;
     })
   }
   productForm=new FormGroup({
@@ -37,9 +46,12 @@ export class FormComponent {
      if(this.editMode==false)
      {
        if(this.productForm.valid){
-        this.http.post('http://localhost:3000/products',data).subscribe((res:any)=>{
-           console.log(res)
-        })
+           this.http.post('http://localhost:3000/products',data)
+           .subscribe((res) => {
+              this.getDataProducts().subscribe((res)=> {
+                this.products=res;
+              })
+            });
         }else{
           this.showErrors=true
        }
@@ -61,11 +73,28 @@ export class FormComponent {
   get product(){
     return this.productForm.get('product')
   }
+
+  getDataProducts(){
+   return this.http.get('http://localhost:3000/products')
+  }
   
   updateProduct(id:number,prod:any){
-    console.log("----->",id,prod)
     this.http.put(`http://localhost:3000/products/${id}`,prod).subscribe((res)=>{
-      console.log(res)
+      this.getDataProducts().subscribe((res)=> {
+        this.products=res;
+      })
+    })
+    this.productForm.setValue({
+      id:'',
+      name:'',
+      price:'',
+      product:''
+    })
+    this.editMode=false
+  }
+  getRequest() {
+    this.getDataProducts().subscribe((res)=> {
+      this.products=res;
     })
   }
 }
